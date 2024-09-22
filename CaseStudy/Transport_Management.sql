@@ -43,3 +43,41 @@ create table Bookings(
 	BookingDate datetime,
 	VehicleStatus varchar(50)
 )
+
+
+-- Inserting sample values
+-- Vehicles
+
+Insert into Vehicles values('Ford Transit',10.00,'Van','On Trip'),
+('Mercedes Actros', 25.00, 'Truck', 'On Trip'),
+('Volvo Bus 9700', 50.00, 'Bus', 'Maintenance')
+
+-- Routes
+
+Insert into Routes values('Mumbai', 'Delhi', 1392.00),
+('Hyderabad', 'Banglore', 574.00),
+('Banglore', 'Chennai', 346.00);
+
+-- Trips 
+
+insert into Trips values(1, 1, '2024-09-22 08:00:00', '2024-09-24 14:00:00', 'Scheduled', 'Passenger', 8),
+(2, 2, '2024-09-23 06:30:00', '2024-09-24 12:30:00', 'In Progress', 'Freight', NULL),
+(3, 3, '2024-09-25 09:00:00', '2024-09-26 18:00:00', 'Scheduled', 'Passenger', 45);
+
+-- Passengers
+
+insert into Passengers values('Tejas', 'Male', 22, 'tejas@gmail.com', '9897980978'),
+('Sneha', 'Female', 23, 'sneha@gmail.com', '8907898900'),
+('Prathmesh', 'Male', 21, 'prath@gmail.com', '9878690899');
+
+-- Bookings
+
+insert into Bookings values(1, 1, '2024-09-20 10:00:00', 'Confirmed'),
+(1, 2, '2024-09-21 14:00:00', 'Confirmed'),
+(3, 3, '2024-09-22 09:00:00', 'Cancelled');
+
+select * from Vehicles
+select * from Routes
+select * from Trips
+select * from Passengers
+select * from Bookings
