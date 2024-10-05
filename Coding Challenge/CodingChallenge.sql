@@ -73,7 +73,7 @@ insert into Lease values(1,1,'2023-01-01','2023-01-05','Daily'),
 update Lease
 set vehicleID=4
 where leaseID=6
-select * from Lease
+
 
 -- Payment
 create table Payment(
@@ -97,10 +97,16 @@ insert into Payment values(1,'2023-01-03',200.00),
 
 select * from Payment
 select * from Customer
-
+select * from Lease
+select * from Vehicle
 
 -- Questions
 
+-- From the lease table pick the monthly leases and print it
+
+select make
+from Vehicle
+where vehicleID in (select vehicleID from Lease where [type] = 'Monthly')
 -- 1. Update the daily rate for a Mercedes car to 68.
 select * from Vehicle
 update Vehicle

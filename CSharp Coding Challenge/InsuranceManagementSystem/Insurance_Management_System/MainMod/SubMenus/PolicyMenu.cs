@@ -26,8 +26,7 @@ namespace Insurance_Management_System.MainMod.SubMenus
                     Console.WriteLine("3. Display Policy by ID");
                     Console.WriteLine("4. Update Policy");
                     Console.WriteLine("5. Delete Policy");
-                    Console.WriteLine("6. Claim Policy");
-                    Console.WriteLine("7. Exit");
+                    Console.WriteLine("6. Exit");
                     Console.Write("> ");
                     choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
@@ -39,12 +38,15 @@ namespace Insurance_Management_System.MainMod.SubMenus
                             DisplayPolicies();
                             break;
                         case 3:
-                            UpdatePolicyMenu();
+                            DisplayPolicyByID();
                             break;
                         case 4:
+                            UpdatePolicyMenu();
+                            break;
+                        case 5:
                             DeletePolicyMenu();
                             break;
-                        case 7:
+                        case 6:
                             Console.WriteLine("Exiting Policy menu");
                             Console.Clear();
                             break;
@@ -57,9 +59,31 @@ namespace Insurance_Management_System.MainMod.SubMenus
                 {
                     Console.WriteLine(ex.Message);
                 }
-            } while (choice != 5);
+            } while (choice != 6);
         }
 
+        private void DisplayPolicyByID()
+        {
+            try
+            {
+                Console.WriteLine("Enter the policyID");
+                int policyID = Convert.ToInt32(Console.ReadLine());
+                bool isPresent = _policyService.IsPolicyPresent(policyID);
+                if (isPresent)
+                {
+                    Policy policy = _policyService.GetPolicy(policyID);
+                    Console.WriteLine(policy.ToString());
+                }
+                else
+                {
+                    throw new PolicyNotFoundException($"The policyId {policyID} could not be found.\n", policyID);
+                }
+            }
+            catch(PolicyNotFoundException pnfe)
+            {
+                Console.WriteLine(pnfe.Message);
+            }
+        }
         private void DisplayPolicies()
         {
             List<Policy> policies = _policyService.GetAllPolicies();
@@ -129,8 +153,8 @@ namespace Insurance_Management_System.MainMod.SubMenus
                         Console.WriteLine("3. Amount covered");
                         Console.WriteLine("4. Start Date");
                         Console.WriteLine("5. End Date");
-                        Console.WriteLine("6. Claim Policy");
-                        Console.WriteLine("7. Exit");
+                        //Console.WriteLine("6. Claim Policy");
+                        Console.WriteLine("6. Exit");
                         Console.Write("> ");
                         choice = Convert.ToInt32(Console.ReadLine());
                         switch (choice)
@@ -170,7 +194,7 @@ namespace Insurance_Management_System.MainMod.SubMenus
                                 break;
                         }
                         UpdatePolicy(fieldToUpdate, newValue, policyID);
-                    } while (choice != 5);
+                    } while (choice != 6);
                 }
                 else
                 {

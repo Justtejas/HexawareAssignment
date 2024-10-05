@@ -8,12 +8,8 @@ namespace Insurance_Management_System.Util
 
         public static SqlConnection GetConnection()
         {
-            if(connection == null)
-            {
-                string connectionString = PropertyUtil.GetPropertyString();
-                connection = new SqlConnection(connectionString);
-                connection.Open();
-            }
+            string connectionString = PropertyUtil.GetPropertyString();
+            connection = new SqlConnection(connectionString);
             return connection;
         }
     }

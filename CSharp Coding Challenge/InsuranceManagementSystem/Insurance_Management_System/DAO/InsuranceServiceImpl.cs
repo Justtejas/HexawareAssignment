@@ -16,7 +16,6 @@ namespace Insurance_Management_System.DAO
             conn.Open();
             using SqlDataReader reader = cmd.ExecuteReader();
             bool isPresent = reader.HasRows;
-            conn.Close();
             return isPresent;
         } 
         public bool CreatePolicy(Policy policy)
@@ -32,8 +31,8 @@ namespace Insurance_Management_System.DAO
             cmd.Connection = conn;
             conn.Open();
             int createStatus = cmd.ExecuteNonQuery();
-            conn.Close();
-            return createStatus > 0; }
+            return createStatus > 0;
+        }
         public Policy GetPolicy(int policyId)
         {
             Policy policy = new();
@@ -55,7 +54,6 @@ namespace Insurance_Management_System.DAO
                     policy.EndDate = Convert.ToDateTime(reader["EndDate"]);
                 }
             }
-            conn.Close();
             return policy;
         }
         public List<Policy> GetAllPolicies()
@@ -81,7 +79,6 @@ namespace Insurance_Management_System.DAO
                     policies.Add(policy);
                 }
             }
-            conn.Close();
             return policies;
         }
         public bool UpdatePolicy(string fieldName, object newValue, int policyID)
@@ -94,7 +91,6 @@ namespace Insurance_Management_System.DAO
             cmd.Connection = conn;
             conn.Open();
             int updateStatus = cmd.ExecuteNonQuery();
-            conn.Close();
             return updateStatus > 0;
         }
         public bool DeletePolicy(int policyID)
@@ -106,22 +102,23 @@ namespace Insurance_Management_System.DAO
             cmd.Connection = conn;
             conn.Open();
             int deleteStatus = cmd.ExecuteNonQuery();
-            conn.Close();
             return deleteStatus > 0;
         }
         public bool RegisterUser(User user)
         {
-            using SqlConnection conn = DBConnection.GetConnection();
-            using SqlCommand cmd = new();
-            cmd.CommandText = "Insert into Users values(@UserID, @UserName, @Password)";
-            cmd.Parameters.AddWithValue("@UserID", user.UserID);
-            cmd.Parameters.AddWithValue("@UserName", user.UserName);
-            cmd.Parameters.AddWithValue("@Password", user.Password);
-            cmd.Connection = conn;
-            conn.Open();
-            int registerStatus = cmd.ExecuteNonQuery();
-            conn.Close();
-            return registerStatus > 0; }
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                using SqlCommand cmd = new();
+                cmd.CommandText = "Insert into Users values(@UserID, @UserName, @Password)";
+                cmd.Parameters.AddWithValue("@UserID", user.UserID);
+                cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                cmd.Parameters.AddWithValue("@Password", user.Password);
+                cmd.Connection = conn;
+                conn.Open();
+                int registerStatus = cmd.ExecuteNonQuery();
+                return registerStatus > 0;
+            }
+        }
         public bool Login(string username, string password)
         {
             using SqlConnection conn = DBConnection.GetConnection();
@@ -140,7 +137,6 @@ namespace Insurance_Management_System.DAO
                     }
                 }
             }
-            conn.Close();
             return false;
         }
     }

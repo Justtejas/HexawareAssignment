@@ -70,11 +70,11 @@ namespace Insurance_Management_System.MainMod.SubMenus
             Console.WriteLine("\nEnter Password");
             Console.Write("> ");
             user.Password = Console.ReadLine();
-            Login(user);
+            LoginUser(user);
         }
-        public bool Login(User user)
+        public bool LoginUser(User user)
         {
-            bool status = _policyService.RegisterUser(user);
+            bool status = _policyService.Login(user.UserName,user.Password);
             if (status)
             {
                 _prettyConsole.Print("Registered Successfull", true);

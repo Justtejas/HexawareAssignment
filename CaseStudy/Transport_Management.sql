@@ -8,7 +8,11 @@ create table Vehicles(
 	Type varchar(50),
 	VehicleStatus varchar(50)
 )
-
+create table Drivers(
+	DriverID int identity(1,1) not null primary key,
+	TripID int foreign key(TripID) references Trips(TripID) on delete cascade on update cascade,
+	name varchar(25) not null,
+)
 create table Routes( 
 	RouteID int identity(1,1) not null primary key,
 	StartDestination varchar(255),
@@ -44,8 +48,15 @@ create table Bookings(
 	VehicleStatus varchar(50)
 )
 
+exec sp_rename 'Bookings.VehicleStatus', 'BookingsStatus', 'COLUMN' 
+
+alter table Trips
+Add constraint FK_Trips_Drivers
+foreign key (DriverID)
+references Drivers(DriverID)
 
 -- Inserting sample values
+insert into Drivers values(1,'Akash');
 -- Vehicles
 
 Insert into Vehicles values('Ford Transit',10.00,'Van','On Trip'),
@@ -76,8 +87,13 @@ insert into Bookings values(1, 1, '2024-09-20 10:00:00', 'Confirmed'),
 (1, 2, '2024-09-21 14:00:00', 'Confirmed'),
 (3, 3, '2024-09-22 09:00:00', 'Cancelled');
 
-select * from Vehicles
+update Drivers set TripID = null where DriverID = 1
+select * from Vehicles where VehicleID = 2;
 select * from Routes
-select * from Trips
+select * from Trips 
+select * from Drivers where TripID IS NULL
 select * from Passengers
 select * from Bookings
+
+
+Alter database [Transport_Management] Modify name = [Transport_Management_Test]

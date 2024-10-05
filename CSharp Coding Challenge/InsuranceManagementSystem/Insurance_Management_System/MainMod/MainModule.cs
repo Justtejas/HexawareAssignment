@@ -1,10 +1,13 @@
-﻿namespace Insurance_Management_System.MainMod
+﻿using Insurance_Management_System.MainMod.SubMenus;
+
+namespace Insurance_Management_System.MainMod
 {
     internal class MainModule
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            PolicyMenu menu = new PolicyMenu();
+            menu.Menu();
         }
     }
 }
