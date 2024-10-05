@@ -1,0 +1,77 @@
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated_Code/
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+# Uncomment if necessary to ignore test projects' packages
+#*.Tests/bin/
+#*.Tests/obj/
+
+# Microsoft Visual Studio Code files
+.vscode/
+
+# Rider project files
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# DotCover files
+*.dcov
+
+# User-specific files
+*.rsuser
+*.rsbak
+*.rsk
+
+# Entity Framework Migrations
+Migrations/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Mac system files
+.DS_Store
+._*
+
+# Certificate/private key files
+*.pfx
+*.p12
+
+# Log files
+*.log
+
+# Resharper
+_ReSharper*/  
+
