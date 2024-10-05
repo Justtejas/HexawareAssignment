@@ -44,3 +44,6 @@ create table Payments(
         on delete cascade
         on update cascade
 );
+
+ALTER TABLE Users
+ADD CONSTRAINT DF_Users_Role DEFAULT 'User' FOR Role;

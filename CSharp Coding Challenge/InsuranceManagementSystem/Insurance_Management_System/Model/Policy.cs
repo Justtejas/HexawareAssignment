@@ -6,15 +6,15 @@
         public string? PolicyNumber { get; set; }
         public string? PolicyType { get; set; }
         public double AmountCovered { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public Policy()
         {
             
         }
 
-        public Policy(int policyID, string policyNumber, string policyType, double amountCovered, DateOnly startDate, DateOnly endDate)
+        public Policy(int policyID, string policyNumber, string policyType, double amountCovered, DateTime startDate, DateTime endDate)
         {
             PolicyID = policyID;
             PolicyNumber = policyNumber;
