@@ -6,6 +6,19 @@ namespace Insurance_Management_System.DAO
 {
     internal class InsuranceServiceImpl : IPolicyService
     {
+        public bool IsPolicyPresent(int policyID)
+        {
+            using SqlConnection conn = DBConnection.GetConnection();
+            using SqlCommand cmd = new();
+            cmd.CommandText = "select * from Policies where PolicyID = @policyID";
+            cmd.Parameters.AddWithValue("@policyID", policyID);
+            cmd.Connection = conn;
+            conn.Open();
+            using SqlDataReader reader = cmd.ExecuteReader();
+            bool isPresent = reader.HasRows;
+            conn.Close();
+            return isPresent;
+        } 
         public bool ClaimPolicy(int policyID)
         {
             return true;

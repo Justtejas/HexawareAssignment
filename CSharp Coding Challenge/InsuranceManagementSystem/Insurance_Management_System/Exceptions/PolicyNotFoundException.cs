@@ -1,6 +1,6 @@
-﻿namespace Insurance_Management_System.Exception
+﻿namespace Insurance_Management_System.Exceptions
 {
-    internal class PolicyNotFoundException:ApplicationException
+    internal class PolicyNotFoundException:Exception
     {
         public int PolicyID { get; }
 
