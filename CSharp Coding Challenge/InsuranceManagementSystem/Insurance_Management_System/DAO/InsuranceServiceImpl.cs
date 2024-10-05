@@ -109,8 +109,7 @@ namespace Insurance_Management_System.DAO
             using (SqlConnection conn = DBConnection.GetConnection())
             {
                 using SqlCommand cmd = new();
-                cmd.CommandText = "Insert into Users values(@UserID, @UserName, @Password)";
-                cmd.Parameters.AddWithValue("@UserID", user.UserID);
+                cmd.CommandText = "Insert into Users(UserName,Password) values( @UserName, @Password)";
                 cmd.Parameters.AddWithValue("@UserName", user.UserName);
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 cmd.Connection = conn;

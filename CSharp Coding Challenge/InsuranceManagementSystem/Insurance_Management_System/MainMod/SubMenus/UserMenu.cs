@@ -11,42 +11,58 @@ namespace Insurance_Management_System.MainMod.SubMenus
 
         readonly IPolicyService _policyService = new InsuranceServiceImpl();
         readonly PrettyConsole _prettyConsole = new();
+        PolicyMenu policyMenu = new();
         public void Menu()
         {
             int choice = 0;
             do
             {
-                Console.WriteLine("1. Register");
-                Console.WriteLine("2. Login");
-                Console.Write("> ");
-                choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
+                try
                 {
-                    case 1:
-                        RegisterMenu();
-                        break;
-                    case 2:
-                        LoginMenu();
-                        break;
-                    case 3:
-                        Console.WriteLine("Exiting");
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Option");
-                        break;
+                    Console.WriteLine("1. Register");
+                    Console.WriteLine("2. Login");
+                    Console.WriteLine("3. Exit");
+                    Console.Write("> ");
+                    choice = Convert.ToInt32(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            RegisterMenu();
+                            break;
+                        case 2:
+                            LoginMenu();
+                            break;
+                        case 3:
+                            Console.WriteLine("Exiting");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Option");
+                            break;
+                    }
+                } 
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             } while (choice != 3);
         }
         public void RegisterMenu()
         {
-            User user = new();
-            Console.WriteLine("Enter User Name");
-            Console.Write("> ");
-            user.UserName = Console.ReadLine();
-            Console.WriteLine("\nEnter Password");
-            Console.Write("> ");
-            user.Password = Console.ReadLine();
-            Register(user);
+            try
+            {
+                User user = new();
+                Console.WriteLine("Enter User Name");
+                Console.Write("> ");
+                user.UserName = Console.ReadLine();
+                Console.WriteLine("\nEnter Password");
+                Console.Write("> ");
+                user.Password = Console.ReadLine();
+                Register(user);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void Register(User user)
@@ -55,6 +71,7 @@ namespace Insurance_Management_System.MainMod.SubMenus
             if (status)
             {
                 _prettyConsole.Print("Registered Successfull", true);
+                policyMenu.Menu();
             }
             else
             {
@@ -63,25 +80,32 @@ namespace Insurance_Management_System.MainMod.SubMenus
         }
         public void LoginMenu()
         {
-            User user = new();
-            Console.WriteLine("Enter User Name");
-            Console.Write("> ");
-            user.UserName = Console.ReadLine();
-            Console.WriteLine("\nEnter Password");
-            Console.Write("> ");
-            user.Password = Console.ReadLine();
-            LoginUser(user);
-        }
-        public bool LoginUser(User user)
+            try
+            {
+                Console.WriteLine("Enter User Name");
+                Console.Write("> ");
+                string username = Console.ReadLine();
+                Console.WriteLine("\nEnter Password");
+                string password = Console.ReadLine();
+                Console.Write("> ");
+                LoginUser(username, password);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+       }
+        public bool LoginUser(string user,string password)
         {
-            bool status = _policyService.Login(user.UserName,user.Password);
+            bool status = _policyService.Login(user,password);
             if (status)
             {
-                _prettyConsole.Print("Registered Successfull", true);
+                _prettyConsole.Print("Logged Successfull", true);
+                policyMenu.Menu();
             }
             else
             {
-                _prettyConsole.Print("Could not register user", false);
+                _prettyConsole.Print("Could not login", false);
             }
             return status;
         }

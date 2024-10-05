@@ -6,7 +6,9 @@ namespace Insurance_Management_System.MainMod
     {
         static void Main(string[] args)
         {
-            PolicyMenu menu = new PolicyMenu();
+            //PolicyMenu menu = new PolicyMenu();
+            //menu.Menu();
+            UserMenu menu = new UserMenu();
             menu.Menu();
         }
     }
