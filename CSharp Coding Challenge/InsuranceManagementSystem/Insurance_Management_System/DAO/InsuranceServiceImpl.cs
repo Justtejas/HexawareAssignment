@@ -19,10 +19,6 @@ namespace Insurance_Management_System.DAO
             conn.Close();
             return isPresent;
         } 
-        public bool ClaimPolicy(int policyID)
-        {
-            return true;
-        }
         public bool CreatePolicy(Policy policy)
         {
             using SqlConnection conn = DBConnection.GetConnection();
@@ -148,5 +144,18 @@ namespace Insurance_Management_System.DAO
             return false;
         }
     }
+    //public bool ClaimPolicy(int policyID, int userID, )
+    //{
+    //    using SqlConnection conn = DBConnection.GetConnection();
+    //        using SqlCommand cmd = new();
+    //        cmd.CommandText = "Insert into Claims values()";
+    //        cmd.Parameters.AddWithValue("@policyID", policyID);
+    //        cmd.Parameters.AddWithValue("@newValue", newValue);
+    //        cmd.Connection = conn;
+    //        conn.Open();
+    //        int updateStatus = cmd.ExecuteNonQuery();
+    //        conn.Close();
+    //        return updateStatus > 0;
+    //    }
 }
 

@@ -5,7 +5,7 @@ namespace Insurance_Management_System.DAO
     internal interface IPolicyService
     {
         public bool IsPolicyPresent(int policyId);
-        public bool ClaimPolicy(int policyID);
+        //public bool ClaimPolicy(int policyID);
         public bool CreatePolicy(Policy policy);
         public Policy GetPolicy(int policyId);
         public List<Policy> GetAllPolicies();
